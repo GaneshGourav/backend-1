@@ -11,9 +11,9 @@ noteRouter.post("/create", async (req, res) => {
   try {
     const note = new NoteModel(payload);
     await note.save();
-    res.status(200).send({ msg: "A new note has been created." });
+    res.status(200).json({ msg: "A new note has been created." });
   } catch (error) {
-    res.status(400).send({ error: error });
+    res.status(400).json({ error: error });
   }
 });
 
@@ -26,10 +26,10 @@ noteRouter.patch("/update/:noteID", async (req, res) => {
     if (req.body.userID===note.userID) {
        await NoteModel.findByIdAndUpdate({_id:noteID},payload);
     
-      res.status(200).send({ msg: "Notes with ID:${noteID} has been updated successfully." });
+      res.status(200).json({ msg: "Notes with ID:${noteID} has been updated successfully." });
     } 
   } catch (error) {
-    res.status(400).send({ error: error });
+    res.status(400).json({ error: error });
   }
 });
 
@@ -42,10 +42,10 @@ console.log(note)
     if (req.body.userID===note.userID) {
        await NoteModel.findByIdAndDelete({_id:noteID});
     
-      res.status(200).send({ msg: "Notes with ID:${noteID} has been deleted successfully." });
+      res.status(200).json({ msg: "Notes with ID:${noteID} has been deleted successfully." });
     } 
   } catch (error) {
-    res.status(400).send({ error: error });
+    res.status(400).json({ error: error });
   }
 });
 

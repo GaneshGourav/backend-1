@@ -28,13 +28,13 @@ userRouter.post("/login", async (req, res) => {
           { userID: user._id, username: user.username },
           "Ganesh"
         );
-        res.status(200).send({ msg: "Login Successful", token: token });
+        res.status(200).jsonp({ msg: "Login Successful", token: token });
       } else {
-        res.status(200).send({ msg: "wrong Crendentials" });
+        res.status(200).json({ msg: "wrong Crendentials" });
       }
     });
   } catch (error) {
-    res.status(400).send({ error: err });
+    res.status(400).json({ error: error });
   }
 });
 
